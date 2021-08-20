@@ -4,9 +4,9 @@ include_once("Controllers/Actions.php");
 session_start();
 
 if( isset($_GET['id']) ){
+    $action = new Actions;
     $id = $_GET['id'];
-    $_SESSION['id'] = $id;
-    Redirect("Views/editar.php");
+    $action->getTask($id);
 }
 
 if( isset($_POST['btnCrear']) ){

@@ -3,30 +3,8 @@
  include_once('includes/Messages.php');
  include_once('../Routes.php');
  include_once('Controllers/Actions.php');
- session_start();
 
- $action = new Actions;
- $action->getTask($_SESSION['id']);
- $datos = json_decode(json_encode($action->datos));
- session_unset();
-
-  /*if( isset($_GET['id']) ){
-    $id = $_GET['id'];
-   $conn = new Conexion;
-    $conn->connect();
-    $query = "SELECT * FROM task WHERE id = $id";
-    $resultado = mysqli_query($conn->lv_conexion, $query);
-
-   
-    if($resultado->num_rows > 0){
-        $row = mysqli_fetch_array($resultado);
-        $datos = json_decode(json_encode($row));
-    }
-    else{   
-        setMessage('Registro no encontrado', 'danger');
-        Redirect('index.php');
-    }
-}*/
+ $datos = json_decode(json_encode($_SESSION['data']));
 ?>
 
 <!DOCTYPE html>

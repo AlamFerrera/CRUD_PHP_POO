@@ -2,6 +2,7 @@
 
 include_once('db.php');
 include_once('includes/Messages.php');
+session_start();
 
 class Actions{
 
@@ -47,7 +48,8 @@ class Actions{
             $row = mysqli_fetch_array($resultado);
             $datos = json_decode(json_encode($row));
             $this->datos = $datos;
-            return $this->datos;
+            $_SESSION['data'] = $datos;
+            Redirect("Views/editar.php");
         }
         else{   
             setMessage('Registro no encontrado', 'danger');
@@ -65,6 +67,7 @@ class Actions{
         mysqli_query($conn->lv_conexion, $query);
 
         setMessage('Task modificada correctamente', 'success');
+        session_unset();
         $conn->disconnect();
     }
     
